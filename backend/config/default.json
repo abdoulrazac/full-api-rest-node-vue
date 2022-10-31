@@ -1,0 +1,22 @@
+{
+  "debug": true,
+
+  "api": {
+    "host": "",
+    "port": 3000,
+    "security": {
+      "jwtSecret": "secret"
+    }
+  },
+
+  "db": {
+    "client": "postgresql",
+    "connection": {
+      "database": "cars_app_3tb",
+      "user": "postgres",
+      "password": "root"
+    }
+  },
+
+  "CorsOrigin" : ["http://localhost:8080"]
+}

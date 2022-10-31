@@ -1,0 +1,402 @@
+{
+  "info": {
+    "title": "API documentation",
+    "version": "1.0.0",
+    "license": {
+      "name": "Licence : Abdoul Razac"
+    },
+    "description": "Ici une description de l'<b>API</b> en HTML"
+  },
+  "securityDefinitions": {
+    "basic_auth": {
+      "type": "basic",
+      "name": "basic_auth",
+      "description": "basic authentication support"
+    }
+  },
+  "host": "http://localhost:3000",
+  "basePath": "/api/v1/",
+  "tags": [
+    {
+      "name": "Authentification",
+      "description": "Méthode permettant de s'authentifier"
+    },
+    {
+      "name": "Utilisateur courant",
+      "description": "Permet d'accéder à liste des Utilisateurs"
+    },
+    {
+      "name": "Utilisateurs",
+      "description": "Permet d'accéder à liste des Utilisateurs"
+    }
+  ],
+  "paths": {
+    "auth-access-token/": {
+      "get": {
+        "tags": [
+          "Authentification"
+        ],
+        "summary": "Permet de s'authentifier",
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "username et password en base64 sous forme : \"Basic username:password\"",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "204": {
+            "description": "Aucune donnée"
+          },
+          "500": {
+            "description": "Erreur"
+          }
+        },
+        "security": [
+          {
+            "petstore_auth": [
+              "write:pets",
+              "read:pets"
+            ]
+          }
+        ]
+      }
+    },
+    "/me": {
+      "get": {
+        "tags": [
+          "Utilisateur courant"
+        ],
+        "summary": "Recuperer l'utilisateur courant",
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "Token d'authentification",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "keyword",
+            "in": "path",
+            "required": false,
+            "type": "string",
+            "description": "Mots clé de recherche"
+          },
+          {
+            "name": "locatité",
+            "in": "path",
+            "required": false,
+            "type": "string",
+            "description": "Localité recherchée"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "204": {
+            "description": "Aucune donnée"
+          },
+          "500": {
+            "description": "Erreur"
+          }
+        },
+        "security": [
+          {
+            "petstore_auth": [
+              "write:pets",
+              "read:pets"
+            ]
+          }
+        ]
+      },
+      "post": {
+        "tags": [
+          "Utilisateur courant"
+        ],
+        "summary": "Mise à jour de l'utilisateur courant",
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "Token d'authentification",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "type": "array",
+            "description": "Liste des entité de l'activité"
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Créée"
+          },
+          "204": {
+            "description": "Aucune donnée"
+          },
+          "500": {
+            "description": "Erreur"
+          }
+        },
+        "security": [
+          {
+            "petstore_auth": [
+              "write:pets",
+              "read:pets"
+            ]
+          }
+        ]
+      }
+    },
+    "/users": {
+      "get": {
+        "tags": [
+          "Utilisateurs"
+        ],
+        "summary": "Liste les utilisateurs",
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "Token d'authentification",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "keyword",
+            "in": "path",
+            "required": false,
+            "type": "string",
+            "description": "Mots clé de recherche"
+          },
+          {
+            "name": "locatité",
+            "in": "path",
+            "required": false,
+            "type": "string",
+            "description": "Localité recherchée"
+          },
+          {
+            "name": "annee",
+            "in": "path",
+            "required": false,
+            "type": "integer",
+            "description": "Année recherchée"
+          },
+          {
+            "name": "datedebut",
+            "in": "path",
+            "required": false,
+            "type": "string",
+            "description": "Date minimum recherchée en base64"
+          },
+          {
+            "name": "datefin",
+            "in": "path",
+            "required": false,
+            "type": "string",
+            "description": "Date maximum recherchée en base64"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "204": {
+            "description": "Aucune donnée"
+          },
+          "500": {
+            "description": "Erreur"
+          }
+        },
+        "security": [
+          {
+            "petstore_auth": [
+              "write:pets",
+              "read:pets"
+            ]
+          }
+        ]
+      },
+      "post": {
+        "tags": [
+          "Utilisateurs"
+        ],
+        "summary": "Crée un utilisateur",
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "Token d'authentification",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "type": "array",
+            "description": "Liste des entité de l'activité"
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Créée"
+          },
+          "204": {
+            "description": "Aucune donnée"
+          },
+          "500": {
+            "description": "Erreur"
+          }
+        },
+        "security": [
+          {
+            "petstore_auth": [
+              "write:pets",
+              "read:pets"
+            ]
+          }
+        ]
+      }
+    },
+    "/users/{id}": {
+      "get": {
+        "tags": [
+          "Utilisateurs"
+        ],
+        "summary": "Recherche un utilisateur selon son identifiant",
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "Token d'authentification",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Identifiant de l'activité",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "204": {
+            "description": "Aucune donnée"
+          },
+          "500": {
+            "description": "Erreur"
+          }
+        },
+        "security": [
+          {
+            "petstore_auth": [
+              "write:pets",
+              "read:pets"
+            ]
+          }
+        ]
+      },
+      "delete": {
+        "tags": [
+          "Utilisateurs"
+        ],
+        "summary": "Supprime un utilisateur selon son identifiant",
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "Token d'authentification",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Identifiant de l'activité",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "204": {
+            "description": "Aucune donnée"
+          },
+          "500": {
+            "description": "Erreur"
+          }
+        },
+        "security": [
+          {
+            "petstore_auth": [
+              "write:pets",
+              "read:pets"
+            ]
+          }
+        ]
+      }
+    },
+    "/users/{id}/update": {
+      "put": {
+        "tags": [
+          "Utilisateurs"
+        ],
+        "summary": "Met à jour un utilisateur selon son identifiant",
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "Token d'authentification",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Identifiant de l'activité",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "204": {
+            "description": "Aucune donnée"
+          },
+          "500": {
+            "description": "Erreur"
+          }
+        },
+        "security": [
+          {
+            "petstore_auth": [
+              "write:pets",
+              "read:pets"
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "swagger": "2.0"
+}
