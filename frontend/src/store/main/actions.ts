@@ -41,6 +41,7 @@ export const actions = {
     async actionGetUserProfile(context: MainContext) {
         try {
             const response = await api.user.getMe(context.state.token);
+            
             if (response.data) {
                 commitSetUserProfile(context, response.data);
             }
@@ -54,7 +55,7 @@ export const actions = {
             commitAddNotification(context, loadingNotification);
             const response = (await Promise.all([
                 api.user.updateMe(context.state.token, payload),
-                await new Promise((resolve, reject) => setTimeout(() => resolve(), 500)),
+                await new Promise<void>((resolve, reject) => setTimeout(() => resolve(), 500)),
             ]))[0];
             commitSetUserProfile(context, response.data);
             commitRemoveNotification(context, loadingNotification);
@@ -128,7 +129,7 @@ export const actions = {
             commitAddNotification(context, loadingNotification);
             const response = (await Promise.all([
                 api.passwordRecovery(payload.username),
-                await new Promise((resolve, reject) => setTimeout(() => resolve(), 500)),
+                await new Promise<void>((resolve, reject) => setTimeout(() => resolve(), 500)),
             ]))[0];
             commitRemoveNotification(context, loadingNotification);
             commitAddNotification(context, { content: 'Password recovery email sent', color: 'success' });
@@ -144,7 +145,7 @@ export const actions = {
             commitAddNotification(context, loadingNotification);
             const response = (await Promise.all([
                 api.resetPassword(payload.password, payload.token),
-                await new Promise((resolve, reject) => setTimeout(() => resolve(), 500)),
+                await new Promise<void>((resolve, reject) => setTimeout(() => resolve(), 500)),
             ]))[0];
             commitRemoveNotification(context, loadingNotification);
             commitAddNotification(context, { content: 'Password successfully reset', color: 'success' });

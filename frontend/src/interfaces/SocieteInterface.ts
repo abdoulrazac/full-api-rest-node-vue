@@ -10,6 +10,7 @@ export interface ISociete {
     telephone : string ;
     description : string ;
     created_at : Date ;
+    _links : any;
 }
 
 export interface ISocieteUpdate {

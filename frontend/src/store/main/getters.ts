@@ -5,8 +5,10 @@ import { State } from '../state';
 export const getters = {
     hasAdminAccess: (state: MainState) => {
         return (
-            state.userProfile &&
-            state.userProfile.is_superuser && state.userProfile.is_active);
+            state.userProfile && 
+            state.userProfile.is_active && 
+            ( state.userProfile.role == 'AdminUser' || state.userProfile.role == 'SuperUser' )
+        );
     },
     loginError: (state: MainState) => state.logInError,
     dashboardShowDrawer: (state: MainState) => state.dashboardShowDrawer,

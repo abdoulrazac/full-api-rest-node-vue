@@ -11,11 +11,11 @@ export const api = {
 
   // Requete pour login
   async logInGetToken(username: string, password: string) {
-    const params = new URLSearchParams(); 
-    params.append('username', username);
-    params.append('password', password);
-
-    return axios.get(`${apiUrl}/api/v1/auth/token`, authHeadersBasic(username, password));
+    // const params = new URLSearchParams(); 
+    // params.append('username', username);
+    // params.append('password', password);
+    
+    return await axios.get(`${apiUrl}/api/v1/auth-access-token`, authHeadersBasic(username, password));
   },
   async passwordRecovery(email: string) {
     return axios.post(`${apiUrl}/api/v1/password-recovery/${email}`);

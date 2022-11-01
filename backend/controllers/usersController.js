@@ -167,7 +167,7 @@ class UsersController extends ControllerBase {
       let userResource = await this.repository.user.find(id, this.uriGenerator);
       this.ok(userResource);
     } catch (err) {
-      this.error(err);
+      this.noContent();
     }
   }
 
@@ -299,18 +299,18 @@ class UsersController extends ControllerBase {
   }
 
   async update() {
-	const postData = this.body;
-	const { id } = this.params;
+    const postData = this.body;
+    const { id } = this.params;
 
-	return await this.updateFunction(postData, id) ;
+    return await this.updateFunction(postData, id) ;
 
   }
 
   async updateMe() {
-	const postData = this.body;
-	const { id } = this.me;
+    const postData = this.body;
+    const { id } = this.me;
 
-	return await this.updateFunction(postData, id) ;
+    return await this.updateFunction(postData, id) ;
 
   }
     

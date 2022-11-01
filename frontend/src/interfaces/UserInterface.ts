@@ -13,9 +13,10 @@ export interface IUserProfile {
     contrat_fin : string ;
     is_use : boolean ;
     is_active : boolean ;
-    is_admin : boolean ;
+    role : string ;
     is_superuser : boolean ;
     created_at : string ;
+    _links : any;
 }
 
 export interface IUserProfileUpdate {
@@ -33,7 +34,7 @@ export interface IUserProfileUpdate {
     password? : string ;
     is_use? : boolean ;
     is_active? : boolean ;
-    is_admin? : boolean ;
+    role : string ;
     is_superuser? : boolean ;
 }
 
@@ -52,6 +53,6 @@ export interface IUserProfileCreate {
     password : string ;
     is_use : boolean ;
     is_active : boolean ;
-    is_admin : boolean ;
+    role : string ;
     is_superuser : boolean ;
 }

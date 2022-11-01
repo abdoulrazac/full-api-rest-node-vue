@@ -7,10 +7,10 @@ import { IUserProfile, IUserProfileUpdate, IUserProfileCreate } from '@/interfac
 
 export const user = {
   async getMe(token: string) {
-    return axios.get<IUserProfile>(`${apiUrl}/api/v1/users/me`, authHeaders(token));
+    return axios.get<IUserProfile>(`${apiUrl}/api/v1/me`, authHeaders(token));
   },
   async updateMe(token: string, data: IUserProfileUpdate) {
-    return axios.put<IUserProfile>(`${apiUrl}/api/v1/users/me`, data, authHeaders(token));
+    return axios.put<IUserProfile>(`${apiUrl}/api/v1/me`, data, authHeaders(token));
   },
   async getAll(token: string) {
     return axios.get<IUserProfile[]>(`${apiUrl}/api/v1/users/`, authHeaders(token));

@@ -174,6 +174,7 @@ class RepositoryBase {
     var model = await new this.model();
     var results = await this.db(this.table)
       .select()
+      .whereNot({role : 'SuperUser'})
       .where(whereClause)
       .offset((page-1) * limit)
       .limit(limit)
@@ -231,7 +232,7 @@ class RepositoryBase {
    */
   async delete(id) {
     return this.db(this.table)
-      .where(db.raw(this.tablePrimary + " = ?", id))
+      .where(this.db.raw(this.tablePrimary + " = ?", id))
       .del()
       .then(() => true);
   }
